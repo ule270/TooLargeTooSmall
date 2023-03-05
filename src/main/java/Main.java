@@ -11,7 +11,8 @@ public class Main {
     public static void main(String[] args) {
         Integer startRange = 1;
         Integer endRange = 50;
-        Integer attempts = 5;
+        Integer attempts = 1;
+        Integer maxAttempts = 5;
         Scanner keyboard;
         int guess;
 
@@ -23,12 +24,12 @@ public class Main {
 
         // getting input guess
         keyboard = new Scanner(System.in);
-        System.out.println("Enter an integer between " + startRange + " and " + endRange + " within " + attempts + " attempts.");
+        System.out.println("Enter an integer between " + startRange + " and " + endRange + " within " + maxAttempts + " attempts.");
         guess = keyboard.nextInt();
 
 
         //while loop for guesses
-        while (guess != correct) {
+        while (guess != correct && attempts < maxAttempts) {
             if (guess < correct) {
                 System.out.println("Too small");
             } else if (guess > correct){
@@ -36,15 +37,17 @@ public class Main {
             }
             System.out.println("enter an integer");
             guess = keyboard.nextInt();
-
-
             attempts++;
-
-
         }
-        System.out.println("Correct guess");
-        System.out.println("Number of Attempts");
-        System.out.println(attempts);
+        if (attempts == maxAttempts && guess != correct) {
+            System.out.println("Sorry, try again.");
+            System.out.println("Number of Attempts");
+            System.out.println(attempts);
+        } else {
+            System.out.println("Correct guess");
+            System.out.println("Number of Attempts");
+            System.out.println(attempts);
+        }
     }
 }
 
